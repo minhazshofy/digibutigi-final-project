@@ -267,37 +267,6 @@ body {
   .product-grid{ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 }
 
-/* Phone (≤600px) */
-@media (max-width: 600px){
-  .logo{ font-size: 18px; }
-  .nav-right{ flex-direction: column; align-items: flex-start; margin-top: 10px; }
-  .nav-search select, .nav-search input{ font-size: 14px; }
-  .product-card img{ height: 120px; }
-  .cart-page{ flex-direction: column; }
-  .cart-left, .cart-right{ width: 100%; }
-  .side-menu__panel{ width: 88vw; }
-}
-
-/* Accessibility: reduce motion */
-@media (prefers-reduced-motion: reduce){
-  .side-menu, .side-menu__panel{ transition: none; }
-}
-
-
-/* Price styles */
-.product-card .price-bdt{
-  font-weight: 700;
-  color: #111;
-  margin: 0 0 6px;
-}
-.product-card .price-usd{
-  color: #666;
-  font-size: 0.9em;
-}
-
-
-
-/* === MOBILE NAV & SUB-NAV FIX (ensures items don't drop below and match requested layout) === */
 @media (max-width: 600px){
   .navbar{
     display:flex;
@@ -306,7 +275,15 @@ body {
     gap:8px;
     padding:8px 10px;
   }
-  .nav-left{ order:1; flex:1 1 auto; display:flex; align-items:center; gap:8px; }
+  .nav-left{
+    order:1;
+    flex:1 1 auto;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  /* right side: শুধু Cart */
   .nav-right{
     order:2;
     margin-left:auto;
@@ -316,19 +293,11 @@ body {
     white-space:nowrap;
     flex:0 0 auto;
   }
-  .nav-search{
-    order:3;
-    flex:1 0 100%;
-    margin-top:6px;
-  }
-  /* Hide EN & Account on mobile */
   .nav-right .lang,
+  .nav-right .orders,
   .nav-right .account{ display:none !important; }
 
-  /* Orders/Cart compact pills */
-  .nav-right .orders br{ display:none; }
-  .nav-right .orders span{ display:none; }
-  .nav-right .orders a,
+  .nav-right .cart{ display:block !important; }
   .nav-right .cart a{
     display:inline-flex;
     align-items:center;
@@ -341,38 +310,14 @@ body {
     font-size:14px;
   }
 
-  /* Sub-navbar: only All button visible, rest are in drawer */
-  .sub-navbar{ justify-content:flex-start; }
-  .sub-navbar a{ display:none !important; }    /* hide category links */
-  .sub-navbar .all-btn{ display:inline-flex !important; }
-}
-
-
-/* === FINAL MOBILE OVERRIDE (per sketch): show EN, hide Account; keep Orders+Cart; All-only subnav === */
-@media (max-width: 600px){
-  .navbar{ display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:8px 10px; }
-  .nav-left{ order:1; flex:1 1 auto; display:flex; align-items:center; gap:8px; }
-  .nav-right{ order:2; margin-left:auto; display:flex; align-items:center; gap:10px; white-space:nowrap; flex:0 0 auto; }
-  .nav-search{ order:3; flex:1 0 100%; margin-top:6px; }
-
-  /* Account hidden, EN visible as compact pill */
-  .nav-right .account{ display:none !important; }
-  .nav-right .lang{
-    display:inline-flex !important; align-items:center; gap:6px;
-    font-size:13px; padding:6px 8px; border-radius:16px;
-    background:#1f2937; color:#fff;
-  }
-  .nav-right .lang img{ width:18px; height:auto; }
-
-  /* Orders/Cart pills */
-  .nav-right .orders br, .nav-right .orders span{ display:none !important; }
-  .nav-right .orders a, .nav-right .cart a{
-    display:inline-flex; align-items:center; gap:6px;
-    padding:6px 10px; background:#232f3e; color:#fff !important;
-    border-radius:16px; text-decoration:none; font-size:14px;
+  /* সার্চবার নিচে ফুল-উইডথ */
+  .nav-search{
+    order:3;
+    flex:1 0 100%;
+    margin-top:6px;
   }
 
-  /* Sub-navbar: only All button */
+  /* Sub-navbar: শুধু All বাটন */
   .sub-navbar{ justify-content:flex-start; }
   .sub-navbar a{ display:none !important; }
   .sub-navbar .all-btn{ display:inline-flex !important; }
